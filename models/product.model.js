@@ -16,7 +16,7 @@ const productSchema=mongoose.Schema({
     },
     updatedDate:{
         type:Date,
-        default:Date.now()
+        default:()=>Date.now()
 },
 })
 

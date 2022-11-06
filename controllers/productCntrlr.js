@@ -135,8 +135,34 @@ async get(req,res){
         }
     }
 
+    async put(req,res){
+        try{
+        const data=req.body;
+        const id=req.params.id;
+        await productRepository.put(id,data)
+        res.status(200)
+        res.send('Record Updated')
+        }catch(err){
+            console.log(err)
+            res.status(500)
+            res.send('Internal Server Error...')
+        }
+    }
 
 
+    async patch(req,res){
+        try{
+            const id=req.params.id;
+            const data=req.body;
+            await productRepository.patch(id,data);
+            res.status(200);
+            res.send('Record Updated Succesfully');
+        }catch(err){
+            console.error(err)
+            res.status(500)
+            res.send('Internal Server Error')
+        }
+    }
 }
 
 module.exports=new ProductCntrl()
