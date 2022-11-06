@@ -2,10 +2,8 @@ const { kStringMaxLength } = require('buffer')
 const mongoose=require('mongoose')
 
 const productSchema=mongoose.Schema({
-    brand:{
-        type:String,
+    brand:String,
 
-},
     model:String,
     price:Number,
     instock:Boolean,

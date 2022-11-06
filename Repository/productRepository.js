@@ -18,8 +18,13 @@ const getById=(id)=>{
     return productModel.findOne({_id:id},projections)
 }
 
+const remove=((id)=>{
+    return productModel.deleteOne({_id:id})
+})
+
 module.exports={
     get,
     post,
     getById,
+    remove,
 }

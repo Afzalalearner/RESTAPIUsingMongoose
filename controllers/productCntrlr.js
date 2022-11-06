@@ -122,6 +122,21 @@ async get(req,res){
         }
     }
 
+    async remove(req,res){
+        try{
+        const id=req.params.id
+        await productRepository.remove(id)
+        res.status(204)
+        res.send('Deleted')
+        }catch(err){
+            console.err(err)
+            res.status(500)
+            res.send('Internal Server Error')
+        }
+    }
+
+
+
 }
 
 module.exports=new ProductCntrl()
