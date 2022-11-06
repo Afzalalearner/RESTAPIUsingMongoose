@@ -108,7 +108,7 @@ async get(req,res){
 
     }
     }
-
+//important here is the id is passed in parameters and not in body
     async getById(req,res){
         try{
         const id=req.params.id
