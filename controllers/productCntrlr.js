@@ -111,7 +111,7 @@ async get(req,res){
 
     async getById(req,res){
         try{
-        const id=req.body.id
+        const id=req.params.id
         const data=await productRepository.getById(id)
         res.status(200)
         res.json(data)

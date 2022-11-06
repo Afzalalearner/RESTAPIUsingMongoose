@@ -15,7 +15,7 @@ const post=(data)=>{
 
 const getById=(id)=>{
     const projections={__v:0,createdDate:0,updatedDate:0}
-    return productModel.findOne(id,projections)
+    return productModel.findOne({_id:id},projections)
 }
 
 module.exports={
