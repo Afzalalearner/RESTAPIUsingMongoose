@@ -7,7 +7,7 @@ const home=(req,res)=>{
 
 const health=(req,res)=>{
     res.status(200)
-    res.json({status:'Ok'})
+    res.json({status:'Up'})
 }
 
 
