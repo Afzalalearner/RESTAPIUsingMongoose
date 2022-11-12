@@ -3,8 +3,13 @@ const productModel = require('./../models/product.model')
 
 
 
-const getCount = () => {
-    return productModel.count();
+const getCount = (options) => {
+    const {search}=options;
+    const filter={
+        $or:[{brand:{$regex:search,$options:'i'}},{model:{$regex:search,
+            $options:'i'}}]
+    }
+    return productModel.count(filter);
 }
 
 // const get=(req,res)=>{
@@ -47,21 +52,25 @@ const getSortDirection = (direction) => {
 }
 
 const get = (options) => {
-    const { pageSize, pageNumber, sort, direction} = options
+    const { pageSize, pageNumber, sort, direction,search} = options
     
+    const filter={
+        $or:[{brand:{$regex:search,$options:'i'}},{model:{$regex:search,
+            $options:'i'}}]
+    }
     
     const projections = { _id: 1, __v: 0, createdDate: 0, updatedDate: 0 }
-    const documentsToSkip = (pageNumber - 1) * pageSize;
-
     const sortByField = getSortBy(sort)
     const sortByDirection = getSortDirection(direction)
+    
+    const documentsToSkip = (pageNumber - 1) * pageSize;
 
 
 
 
 
 
-    return productModel.find({}, projections)
+    return productModel.find(filter, projections)
         .sort({ [sortByField]: sortByDirection })
         .skip(documentsToSkip)
         .limit(pageSize)
