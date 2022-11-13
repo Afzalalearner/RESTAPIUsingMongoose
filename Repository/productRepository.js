@@ -8,7 +8,7 @@ const getCount = (options) => {
     const filter={
         $or:[{brand:{$regex:search,$options:'i'}},{model:{$regex:search,
             $options:'i'}}]
-    }
+    }//empty regex matches everything....that's how searc='' returns null as output...this bug is fixed
     return productModel.count(filter);
 }
 

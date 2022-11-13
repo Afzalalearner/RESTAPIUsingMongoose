@@ -1,13 +1,23 @@
+const path=require('path')
+const fs=require('fs')
 const express=require('express')
 const app=express()
+const morgan=require('morgan')
 const mongoose=require('mongoose');
-
 const homeRouter=require('./routers/homeRouter')
 const productRouter=require('./routers/productRouter')
 
+const filepath=path.join(__dirname,'logs','request.log')
+const fileStream=fs.createWriteStream(filepath,{flags:'a'})
 const port=process.env.port||3000;
 
 app.use(express.json())
+app.use(morgan('combined',{stream:fileStream}))
+
+const logsDir=path.join(__dirname,'logs')
+if(!fs.existsSync(logsDir)){
+    fs.mkdirSync(logsDir)
+}
 
 
 app.use('/',homeRouter)
