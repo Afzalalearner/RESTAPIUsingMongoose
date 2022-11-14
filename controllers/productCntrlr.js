@@ -1,4 +1,5 @@
 // const productModel=require('./../models/product.model')
+const logger = require('../utils/appLogger');
 const productRepository = require('./../Repository/productRepository')
 
 const hasValidationError = (err) => {
@@ -95,11 +96,12 @@ class ProductCntrl {
                 data,
             }
 
-
+            logger.info(response)
             res.status(200)
             res.json(response);
         } catch (err) {
-            console.error(err)
+          
+            logger.error(err)
             res.status(500)
             res.send('Internal Server Error')
         }
