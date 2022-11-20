@@ -1,8 +1,11 @@
 const logger=require('./../utils/appLogger')
+const path=require('path')
 
 const home=(req,res)=>{
-    res.status(200)
-    res.send('Welcome to Home Page...')
+    
+    const filePath = path.resolve(__dirname, 'index.html');
+    res.status(200);
+    res.sendFile(filePath);
 }
 
 const health=(req,res)=>{
