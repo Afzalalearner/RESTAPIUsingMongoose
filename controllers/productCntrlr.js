@@ -84,6 +84,7 @@ class ProductCntrl {
                 search:req.query.search || '',
                
             }
+            console.log(req.body)
 
             const count=await productRepository.getCount(options);
             const data = await productRepository.get(options)
@@ -155,6 +156,7 @@ class ProductCntrl {
 
     async post(req, res) {
         try {
+            console.log(req.body)
             const data = await productRepository.post(req.body)
             res.status(200)
             res.send('Created')

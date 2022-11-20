@@ -6,10 +6,12 @@ const mongoose=require('mongoose');
 const homeRouter=require('./routers/homeRouter')
 const productRouter=require('./routers/productRouter')
 const fileStream=require('./utils/requestLogger')
+const bodyparser=require('body-parser')
+const config=require('./config/index')
 
 const port=process.env.port||3000;
 
-app.use(express.json())
+app.use(bodyparser())
 app.use(morgan('combined',{stream:fileStream}))
 
 
@@ -23,7 +25,7 @@ app.get('*',(req,res)=>{
     res.send('Page Not found')
 })
 
-mongoose.connect('mongodb://127.0.0.1:27017/myapp',()=>{
+mongoose.connect(config.dbconStr,()=>{
     console.log('Connected to DB')
 })
 
