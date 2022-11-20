@@ -1,7 +1,9 @@
 const express=require('express')
 const productCntrlr = require('../controllers/productCntrlr')
 const router=express.Router()
-// router.get('/',productCntrlr.get)
+const multer=require('multer')
+
+
 router.get('/',productCntrlr.get)
 router.get('/page/:page',productCntrlr.get)
 router.get('/page/:page/limit/:limit',productCntrlr.get)
